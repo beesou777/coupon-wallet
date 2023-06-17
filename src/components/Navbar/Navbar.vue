@@ -1,26 +1,38 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100 shadow-none" style="z-index: 999" :class="{ 'navbar-light bg-light': isNavbarLight, 'navbar-dark bg-dark': !isNavbarLight }">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      @click="toggleNavbar"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
     <!-- Navbar content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" :class="{ 'show': isNavbarOpen }">
       <!-- Navigation links -->
       <ul class="navbar-nav me-auto ps-lg-3">
         <li class="nav-item">
-          <RouterLink class="nav-link" to="/" :class="{ active: currentPage === 'home-main' }">
+          <RouterLink class="nav-link" to="/" :class="{ active: currentPage === 'home-main' }" @click="hideNavbar">
             Home
           </RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink class="nav-link" to="/coupons" :class="{ active: currentPage === 'coupons' }">
+          <RouterLink class="nav-link" to="/coupons" :class="{ active: currentPage === 'coupons' }" @click="hideNavbar">
             Coupons
           </RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink class="nav-link" to="/redeem" :class="{ active: currentPage === 'redeem' }">
+          <RouterLink class="nav-link" to="/redeem" :class="{ active: currentPage === 'redeem' }" @click="hideNavbar">
             Redeem
           </RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink class="nav-link" to="/about" :class="{ active: currentPage === 'about' }">
+          <RouterLink class="nav-link" to="/about" :class="{ active: currentPage === 'about' }" @click="hideNavbar">
             About
           </RouterLink>
         </li>
@@ -49,7 +61,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../../store/authStore';
-import { onMounted, computed,ref } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -57,8 +69,6 @@ const authStore = useAuthStore();
 // Check if a given route path is currently active
 const currentPage = computed(() => router.currentRoute.value.name);
 
-console.log(currentPage)
-console.log(currentPage)
 const setActivePage = (page) => {
   router.push(page);
 };
@@ -71,12 +81,13 @@ const coupons = () => {
   setActivePage("/coupons");
 };
 
-const redeem = () =>{
-  setActivePage("/redeem")
-}
-const about = () =>{
-  setActivePage("/about")
-}
+const redeem = () => {
+  setActivePage("/redeem");
+};
+
+const about = () => {
+  setActivePage("/about");
+};
 
 // Function to route to the login page
 const login = () => {
@@ -96,6 +107,7 @@ const logout = () => {
 };
 
 const scrollPosition = ref(0);
+const isNavbarOpen = ref(false);
 
 // Listen for the scroll event and update the scroll position
 onMounted(() => {
@@ -108,8 +120,18 @@ const handleScroll = () => {
 
 // Computed property to determine the navbar color based on scroll position
 const isNavbarLight = computed(() => {
-  return scrollPosition.value < 20;
+  return scrollPosition.value < 90;
 });
+
+// Toggle the navbar on small devices
+const toggleNavbar = () => {
+  isNavbarOpen.value = !isNavbarOpen.value;
+};
+
+// Hide the navbar collapse element when a link is clicked
+const hideNavbar = () => {
+  isNavbarOpen.value = false;
+};
 </script>
 
 <style scoped>
@@ -126,6 +148,7 @@ const isNavbarLight = computed(() => {
   left: 0;
   background: orangered;
 }
+
 .navbar {
   transition: background-color 0.3s ease-in-out;
 }
