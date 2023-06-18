@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-5">
+    <div class="pt-5 ">
         <div class="pt-5 image">
             <div class="row mx-auto px-5">
                 <div class="col-lg-6 col-md-6 col-sm-12 px-3">
@@ -57,6 +57,7 @@ const redeemCoupon = ()=>{
     const matching = couponStore.coupon.find(coupon => coupon.code === couponCode.value)
     const id = matching._id
     couponStore.redeemCoupon(id)
+    // set time out on success or failure of coupon
     if(couponStore.redeemError == true){
         isredeemError.value = true
         setTimeout(()=>{
@@ -69,6 +70,7 @@ const redeemCoupon = ()=>{
         },1000)
 
     }
+    couponCode.value = "" // reset the value to empty
 
 }
 
@@ -77,12 +79,8 @@ const redeemCoupon = ()=>{
 .image{
     background: url("../../assets/img/redeem.png") no-repeat center;
     background-size: cover;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
     width: 100%;
-    position: fixed;
-    top: 50px;
-    left: 0;
 }
 
 @media (max-width: 768px) {

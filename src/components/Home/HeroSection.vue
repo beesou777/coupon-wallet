@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <div class="row" style="height:auto;">
-        <div class="col-lg-7 col-md-6 col-sm-12" style="padding-top:20vh">
+        <div class="col-lg-7 col-md-6 col-sm-12 padding">
           <div class="">
             <div class="title">
               <h1 class="t-pri fw-bolder line-sp">Coupons</h1>
@@ -12,6 +12,10 @@
             </div>
             <div class="feature">
               <h4 class="text-muted text-uppercase line-sp">just find and get your desire <span class="t-pri fw-semi-bold">coupons code</span></h4>
+            </div>
+            <div class="find d-flex gap-2 align-items-center">
+              <router-link to="/coupons" class="fs-4 text-dark">Find Your desired coupons</router-link>
+              <i class="fas fa-arrow-right"></i>
             </div>
           </div>
         </div>
@@ -28,7 +32,15 @@
   .img {
     animation: floatingAnimation 3s infinite alternate;
   }
+  .padding{
+    padding-top:20vh;
+  }
   
+  @media (max-width: 768px) {
+  .padding {
+    padding-top: 1vh;
+  }
+}
   @keyframes floatingAnimation {
     0% {
       transform: translateY(0);

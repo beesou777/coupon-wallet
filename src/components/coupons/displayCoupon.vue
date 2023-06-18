@@ -13,7 +13,7 @@
         <div class="bg-l rounded-3 pt-2">
           <div class="header px-3 py-2">
             <div class="data line-sp d-flex justify-content-between">
-              <h4 class="m-0">{{ data.couponName }}</h4>
+              <h4 :class="['m-0 text-cp', { 'coupon-name': data.couponName.length > 12 }]">{{ data.couponName }}</h4>
               <p class="m-0 bg-warning px-3 text-light rounded-4" style="width:fit-content">{{ data.discount }}%</p>
             </div>
           </div>
@@ -73,6 +73,8 @@ const isClicked = ref([])
 onMounted(()=>{
   couponStore.getAllCoupon()
 })
+
+// load the coupon data
 const coupons = computed(()=>{
     return couponStore.coupon
 })
@@ -108,5 +110,12 @@ const couponCode = (index)=>{
   height: 2px;
   width: 100%;
   border-top: 2px dotted #fff;
+}
+.coupon-name {
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+.text-cp{
+  text-transform: capitalize;
 }
 </style>

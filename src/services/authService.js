@@ -2,11 +2,14 @@ import axios from 'axios';
 import router from '../router';
 
 class AuthService {
+  // login service
   async login(username,password) {
     try {
       const response = await axios.post('api/admin/login', { username,password });
       return Promise.resolve(response.data);
-    } catch (error) {
+    } 
+    // error handling
+    catch (error) {
       if (error.response && error.response.status === 400) {
         return Promise.reject('Invalid username or password');
       } else {
@@ -14,8 +17,7 @@ class AuthService {
       }
     }
   }
-
-
+// register service
   async register(data) {
     return axios.post('api/admin/register', {
       username: data.username,

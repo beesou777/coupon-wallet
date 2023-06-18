@@ -10,6 +10,7 @@ export const useCouponStore = defineStore("coupon", {
   }),
 
   actions: {
+    // get all coupon
     async getAllCoupon(){
       return couponServices.getAllCoupon()
       .then((res)=>{
@@ -20,6 +21,7 @@ export const useCouponStore = defineStore("coupon", {
         console.log(err)
       })
     },
+    // create coupon
     async createCoupon(code,category,couponName,discount,place,expirationDate,creationDate,redeemable){
       return couponServices.createCoupon(code,category,couponName,discount,place,expirationDate,creationDate,redeemable)
       .then(res=>{
@@ -29,6 +31,7 @@ export const useCouponStore = defineStore("coupon", {
         console.log(error)
       })
     },
+    // redeem coupon
     async redeemCoupon(id){
       return couponServices.redeemCoupon(id)
       .then((res)=>{

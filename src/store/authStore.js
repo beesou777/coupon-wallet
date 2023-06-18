@@ -9,14 +9,8 @@ export const useAuthStore = defineStore("auth", {
     refreshToken: JSON.parse(localStorage.getItem('refresh_token')) || null,
     accessToken: JSON.parse(localStorage.getItem('access_token')) || null,
   }),
-
-  
-  getters: {
-    is_auth: (state) => !!state.authUser,
-  },
-
-
   actions: {
+    // login 
     async login(username,password) {
       return AuthService.login(username,password)
         .then((res) => {
@@ -33,7 +27,6 @@ export const useAuthStore = defineStore("auth", {
     },
 
     // to register user
-
     async register(data) {
       try {
         const response = await AuthService.register(data);

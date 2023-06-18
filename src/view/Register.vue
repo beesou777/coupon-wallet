@@ -114,6 +114,7 @@ async function userRegister() {
 
 }
 
+// if access toekn is available then route to dashboard
 onMounted(()=>{
   const data = JSON.parse(localStorage.getItem("access_token"))
   if(data){

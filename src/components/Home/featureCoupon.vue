@@ -1,10 +1,10 @@
 <template>
   <div class="container py-5">
     <div class="title d-flex justify-content-between">
-      <h3 class="t-pri">Featured Coupons:</h3>
+      <h3 class="mx-lg-3">Featured Coupons:</h3>
      <div class="d-flex align-items-center gap-1" @click="showCoupon" style="cursor:pointer">
-      <p class="t-pri m-0">Show All Available Coupons</p>
-      <i class="fas fa-arrow-right t-pri fs-5"></i>
+      <p class="m-0">Show All Available Coupons</p>
+      <i class="fas fa-arrow-right fs-5"></i>
      </div>
     </div>
     <div class="row py-2">
@@ -16,7 +16,7 @@
         <div class="bg-l rounded-3 pt-2">
           <div class="header px-3 py-2">
             <div class="data line-sp d-flex justify-content-between">
-              <h4 class="m-0">{{ data.couponName }}</h4>
+              <h4 :class="['m-0 text-cp', { 'coupon-name': data.couponName.length > 12 }]">{{ data.couponName }}</h4>
               <p class="m-0 bg-warning px-3 text-light rounded-4" style="width:fit-content">{{ data.discount }}%</p>
             </div>
           </div>
@@ -92,6 +92,7 @@ const showCoupon = ()=>{
 const couponCode = (index)=>{
   isClicked.value[index] = !isClicked.value[index]
 }
+
 </script>
 
 <style scoped>
@@ -119,5 +120,12 @@ const couponCode = (index)=>{
   height: 2px;
   width: 100%;
   border-top: 2px dotted #fff;
+}
+.coupon-name {
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+.text-cp{
+  text-transform: capitalize;
 }
 </style>

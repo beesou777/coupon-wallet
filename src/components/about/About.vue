@@ -37,8 +37,3 @@
       </ul>
     </div>
   </template>
-  
-  <style scoped>
-  /* Add custom styles for the About page here */
-  </style>
-  

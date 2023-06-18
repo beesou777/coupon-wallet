@@ -2,6 +2,7 @@ import axios from 'axios';
 import router from '../router';
 
 class AuthService {
+  // get all coupon services
   async getAllCoupon() {
     try {
       const response = await axios.get('coupon');
@@ -16,6 +17,7 @@ class AuthService {
   }
 
 
+  // create coupon services
   async createCoupon(code,category,couponName,discount,place,expirationDate,creationDate,redeemable) {
     return axios.post('coupon', {code,category,couponName,discount,place,expirationDate,creationDate,redeemable})
       .then(res => {
@@ -32,11 +34,13 @@ class AuthService {
       });
   }
 
+  // redeem coupon services
   async redeemCoupon(id){
     return axios.patch(`coupon/${id}`)
     .then((res)=>{
       return Promise.resolve(res.data)
     })
+    // error handlign
     .catch((err)=>{
       return Promise.reject(err)
     })

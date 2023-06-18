@@ -41,11 +41,14 @@ import { useCouponStore } from "../../../store/couponStore";
 // variables
 const couponStore = useCouponStore();
 
+// call get all coupon method
 onMounted(async () => {
-  couponStore.getAllCoupon();
+  await couponStore.getAllCoupon();
 });
 
+// load coupon data
 const couponsData = computed(() => {
   return couponStore.coupon;
 });
+
 </script>
